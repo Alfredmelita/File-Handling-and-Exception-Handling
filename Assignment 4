@@ -1,0 +1,36 @@
+# File Read & Write Challenge + Error Handling Lab
+
+def process_file(input_file, output_file):
+    try:
+        # Step 1: Open the input file
+        with open(input_file, "r") as infile:
+            content = infile.read()
+
+        # Step 2: Modify the content (make it uppercase for now)
+        modified_content = content.upper()
+
+        # Step 3: Write the modified content to a new file
+        with open(output_file, "w") as outfile:
+            outfile.write(modified_content)
+
+        print(f"\n✅ Successfully created '{output_file}' with modified content.")
+
+    except FileNotFoundError:
+        print(f"❌ Error: The file '{input_file}' was not found.")
+    except PermissionError:
+        print(f"❌ Error: You don’t have permission to read/write this file.")
+    except Exception as e:
+        print(f"⚠️ Unexpected error: {e}")
+
+
+# Main program
+print("📂 File Modifier Program\n")
+
+# Ask user for input filename
+input_file = input("Enter the filename to read: ")
+
+# Auto-generate output filename
+output_file = "modified_" + input_file
+
+# Call function
+process_file(input_file, output_file)
